@@ -1,41 +1,135 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Contact Us</title>
-    <link rel="stylesheet" href="Style.css">
-</head>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
 
-<body>
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Contact - ToolHub</title>
+
+<link
+    rel="stylesheet"
+    href="./Style.css"
+>
+
+</head><body><header><div class="container nav-container">
+
+    <h2>ToolHub</h2>
 
     <nav>
-        <h2>Furqan Website</h2>
 
-        <div>
-            <a href="index.html">Home</a>
-            <a href="About.html">About</a>
-            <a href="Contact.html">Contact</a>
-        </div>
+        <a href="./index.html">
+            Home
+        </a>
+
+        <a href="./About.html">
+            About
+        </a>
+
+        <a href="./Contact.html">
+            Contact
+        </a>
+
+        <button
+            id="darkModeBtn"
+            type="button"
+        >
+            🌙
+        </button>
+
     </nav>
 
-    <section class="about">
-        <h1>Contact Us</h1>
+</div>
 
-        <p>آپ ہم سے رابطہ کر سکتے ہیں۔</p>
+</header><section class="hero"><div class="container">
 
-        <form>
-            <input type="text" placeholder="Your Name">
+    <span class="badge">
+        CONTACT US
+    </span>
 
-            <input type="email" placeholder="Your Email">
+    <h1>
+        Get in Touch
+    </h1>
 
-            <textarea placeholder="Your Message"></textarea>
+    <p>
+        Have a question or suggestion?
+        Send us a message.
+    </p>
 
-            <button type="submit">Send Message</button>
+</div>
+
+</section><section class="tools"><div class="container">
+
+    <div class="tool-card">
+
+        <h3>
+            ✉️ Send Us a Message
+        </h3>
+
+
+        <form id="contactForm">
+
+
+            <input
+                type="text"
+                id="contactName"
+                placeholder="Your Name"
+                required
+            >
+
+
+            <input
+                type="email"
+                id="contactEmail"
+                placeholder="Your Email"
+                required
+            >
+
+
+            <textarea
+                id="contactMessage"
+                placeholder="Your Message"
+                rows="6"
+                required
+            ></textarea>
+
+
+            <button
+                type="submit"
+            >
+                Send Message
+            </button>
+
+
         </form>
-    </section>
 
-    <footer>
-        <p>© 2026 Furqan Website</p>
-    </footer>
+    </div>
 
-</body>
-</html>
+
+    <br><br>
+
+
+    <div class="tool-card">
+
+        <h3>
+            💡 Suggestions
+        </h3>
+
+        <p>
+            If you have an idea for a new tool,
+            you can send us your suggestion.
+        </p>
+
+    </div>
+
+</div>
+
+</section><footer><div class="container">
+
+    <p>
+        © 2026 ToolHub. All Rights Reserved.
+    </p>
+
+</div>
+
+</footer><script src="./script.js"></script></body></html>
