@@ -1,165 +1,289 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToolHub - Free Online Tools</title>
-    <link rel="stylesheet" href="Style.css">
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ToolHub - Free Online Tools</title>
 
-<body>
+<link rel="stylesheet" href="./Style.css">
 
-<header>
-    <div class="container nav-container">
-        <h2>ToolHub</h2>
+</head><body><header>
+    <div class="container nav-container">    <h2>ToolHub</h2>
 
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="About.html">About</a>
-            <a href="Contact.html">Contact</a>
-            <button type="button" onclick="toggleDarkMode()">🌙</button>
-        </nav>
-    </div>
-</header>
+    <nav>
+        <a href="./index.html">Home</a>
+        <a href="./About.html">About</a>
+        <a href="./Contact.html">Contact</a>
 
-<section class="hero">
-    <div class="container">
-        <span class="badge">FREE ONLINE TOOLS</span>
-        <h1>Useful Tools in One Place</h1>
-        <p>Free and simple online tools for everyday calculations.</p>
-    </div>
-</section>
+        <button id="darkModeBtn" type="button">
+            🌙
+        </button>
+    </nav>
 
-<section class="tools">
-    <div class="container">
+</div>
 
-        <h2>Our Tools</h2>
+</header><section class="hero"><div class="container">
 
-        <div class="tool-grid">
+    <span class="badge">
+        FREE ONLINE TOOLS
+    </span>
 
-            <!-- Age Calculator -->
-            <div class="tool-card">
-                <h3>🎂 Age Calculator</h3>
+    <h1>
+        Useful Tools in One Place
+    </h1>
 
-                <input type="date" id="birthDate">
+    <p>
+        Free and simple online tools for everyday calculations.
+    </p>
 
-                <button type="button" onclick="calculateAge()">
-                    Calculate Age
+</div>
+
+</section><section class="tools"><div class="container">
+
+    <h2>Our Tools</h2>
+
+
+    <div class="tool-grid">
+
+
+        <!-- AGE CALCULATOR -->
+
+        <div class="tool-card">
+
+            <h3>🎂 Age Calculator</h3>
+
+            <input
+                type="date"
+                id="birthDate"
+            >
+
+            <button
+                type="button"
+                id="ageBtn"
+            >
+                Calculate Age
+            </button>
+
+            <div
+                id="ageResult"
+                class="result"
+            ></div>
+
+        </div>
+
+
+        <!-- CALCULATOR -->
+
+        <div class="tool-card calculator-card">
+
+            <h3>🧮 Calculator</h3>
+
+            <input
+                type="text"
+                id="calcDisplay"
+                value=""
+                placeholder="0"
+                readonly
+            >
+
+
+            <div class="calculator">
+
+                <button type="button" data-value="clear">
+                    C
                 </button>
 
-                <div id="ageResult" class="result"></div>
-            </div>
-
-
-            <!-- Calculator -->
-            <div class="tool-card">
-                <h3>🧮 Calculator</h3>
-
-                <input
-                    type="text"
-                    id="calcDisplay"
-                    placeholder="0"
-                    readonly
-                >
-
-                <div class="calculator">
-
-                    <button type="button" onclick="clearCalc()">C</button>
-                    <button type="button" onclick="deleteCalc()">⌫</button>
-                    <button type="button" onclick="addCalc('/')">÷</button>
-                    <button type="button" onclick="addCalc('*')">×</button>
-
-                    <button type="button" onclick="addCalc('7')">7</button>
-                    <button type="button" onclick="addCalc('8')">8</button>
-                    <button type="button" onclick="addCalc('9')">9</button>
-                    <button type="button" onclick="addCalc('-')">−</button>
-
-                    <button type="button" onclick="addCalc('4')">4</button>
-                    <button type="button" onclick="addCalc('5')">5</button>
-                    <button type="button" onclick="addCalc('6')">6</button>
-                    <button type="button" onclick="addCalc('+')">+</button>
-
-                    <button type="button" onclick="addCalc('1')">1</button>
-                    <button type="button" onclick="addCalc('2')">2</button>
-                    <button type="button" onclick="addCalc('3')">3</button>
-                    <button type="button" onclick="calculateCalc()">=</button>
-
-                    <button type="button" onclick="addCalc('0')" class="zero">
-                        0
-                    </button>
-
-                    <button type="button" onclick="addCalc('.')">.</button>
-
-                </div>
-            </div>
-
-
-            <!-- Percentage Calculator -->
-            <div class="tool-card">
-                <h3>📊 Percentage Calculator</h3>
-
-                <input
-                    type="number"
-                    id="percent"
-                    placeholder="Percentage"
-                >
-
-                <input
-                    type="number"
-                    id="percentNumber"
-                    placeholder="Number"
-                >
-
-                <button type="button" onclick="calculatePercentage()">
-                    Calculate
+                <button type="button" data-value="delete">
+                    ⌫
                 </button>
 
-                <div id="percentageResult" class="result"></div>
-            </div>
-
-
-            <!-- Unit Converter -->
-            <div class="tool-card">
-                <h3>📏 Unit Converter</h3>
-
-                <input
-                    type="number"
-                    id="unitValue"
-                    placeholder="Enter value"
-                >
-
-                <select id="unitFrom">
-                    <option value="meter">Meter</option>
-                    <option value="kilometer">Kilometer</option>
-                    <option value="feet">Feet</option>
-                    <option value="inch">Inch</option>
-                </select>
-
-                <select id="unitTo">
-                    <option value="meter">Meter</option>
-                    <option value="kilometer">Kilometer</option>
-                    <option value="feet">Feet</option>
-                    <option value="inch">Inch</option>
-                </select>
-
-                <button type="button" onclick="convertUnit()">
-                    Convert
+                <button type="button" data-value="/">
+                    ÷
                 </button>
 
-                <div id="unitResult" class="result"></div>
+                <button type="button" data-value="*">
+                    ×
+                </button>
+
+
+                <button type="button" data-value="7">
+                    7
+                </button>
+
+                <button type="button" data-value="8">
+                    8
+                </button>
+
+                <button type="button" data-value="9">
+                    9
+                </button>
+
+                <button type="button" data-value="-">
+                    −
+                </button>
+
+
+                <button type="button" data-value="4">
+                    4
+                </button>
+
+                <button type="button" data-value="5">
+                    5
+                </button>
+
+                <button type="button" data-value="6">
+                    6
+                </button>
+
+                <button type="button" data-value="+">
+                    +
+                </button>
+
+
+                <button type="button" data-value="1">
+                    1
+                </button>
+
+                <button type="button" data-value="2">
+                    2
+                </button>
+
+                <button type="button" data-value="3">
+                    3
+                </button>
+
+                <button type="button" data-value="=">
+                    =
+                </button>
+
+
+                <button
+                    type="button"
+                    data-value="0"
+                    class="zero"
+                >
+                    0
+                </button>
+
+                <button type="button" data-value=".">
+                    .
+                </button>
+
             </div>
 
         </div>
+
+
+        <!-- PERCENTAGE -->
+
+        <div class="tool-card">
+
+            <h3>📊 Percentage Calculator</h3>
+
+            <input
+                type="number"
+                id="percent"
+                placeholder="Percentage"
+            >
+
+            <input
+                type="number"
+                id="percentNumber"
+                placeholder="Number"
+            >
+
+            <button
+                type="button"
+                id="percentageBtn"
+            >
+                Calculate
+            </button>
+
+            <div
+                id="percentageResult"
+                class="result"
+            ></div>
+
+        </div>
+
+
+        <!-- UNIT CONVERTER -->
+
+        <div class="tool-card">
+
+            <h3>📏 Unit Converter</h3>
+
+            <input
+                type="number"
+                id="unitValue"
+                placeholder="Enter value"
+            >
+
+            <select id="unitFrom">
+
+                <option value="meter">
+                    Meter
+                </option>
+
+                <option value="kilometer">
+                    Kilometer
+                </option>
+
+                <option value="feet">
+                    Feet
+                </option>
+
+                <option value="inch">
+                    Inch
+                </option>
+
+            </select>
+
+
+            <select id="unitTo">
+
+                <option value="meter">
+                    Meter
+                </option>
+
+                <option value="kilometer">
+                    Kilometer
+                </option>
+
+                <option value="feet">
+                    Feet
+                </option>
+
+                <option value="inch">
+                    Inch
+                </option>
+
+            </select>
+
+
+            <button
+                type="button"
+                id="convertBtn"
+            >
+                Convert
+            </button>
+
+            <div
+                id="unitResult"
+                class="result"
+            ></div>
+
+        </div>
+
     </div>
-</section>
 
-<footer>
-    <div class="container">
-        <p>© 2026 ToolHub. All Rights Reserved.</p>
-    </div>
-</footer>
+</div>
 
-<script src="script.js"></script>
+</section><footer><div class="container">
 
-</body>
+    <p>
+        © 2026 ToolHub. All Rights Reserved.
+    </p>
+
+</div>
+
+</footer><script src="./script.js"></script></body>
 </html>
