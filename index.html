@@ -17,7 +17,7 @@
             <a href="index.html">Home</a>
             <a href="About.html">About</a>
             <a href="Contact.html">Contact</a>
-            <button onclick="toggleDarkMode()">🌙</button>
+            <button type="button" onclick="toggleDarkMode()">🌙</button>
         </nav>
     </div>
 </header>
@@ -25,12 +25,8 @@
 <section class="hero">
     <div class="container">
         <span class="badge">FREE ONLINE TOOLS</span>
-
         <h1>Useful Tools in One Place</h1>
-
-        <p>
-            Free and simple online tools for everyday calculations.
-        </p>
+        <p>Free and simple online tools for everyday calculations.</p>
     </div>
 </section>
 
@@ -47,7 +43,7 @@
 
                 <input type="date" id="birthDate">
 
-                <button onclick="calculateAge()">
+                <button type="button" onclick="calculateAge()">
                     Calculate Age
                 </button>
 
@@ -68,31 +64,31 @@
 
                 <div class="calculator">
 
-                    <button onclick="clearCalc()">C</button>
-                    <button onclick="deleteCalc()">⌫</button>
-                    <button onclick="addCalc('/')">÷</button>
-                    <button onclick="addCalc('*')">×</button>
+                    <button type="button" onclick="clearCalc()">C</button>
+                    <button type="button" onclick="deleteCalc()">⌫</button>
+                    <button type="button" onclick="addCalc('/')">÷</button>
+                    <button type="button" onclick="addCalc('*')">×</button>
 
-                    <button onclick="addCalc('7')">7</button>
-                    <button onclick="addCalc('8')">8</button>
-                    <button onclick="addCalc('9')">9</button>
-                    <button onclick="addCalc('-')">−</button>
+                    <button type="button" onclick="addCalc('7')">7</button>
+                    <button type="button" onclick="addCalc('8')">8</button>
+                    <button type="button" onclick="addCalc('9')">9</button>
+                    <button type="button" onclick="addCalc('-')">−</button>
 
-                    <button onclick="addCalc('4')">4</button>
-                    <button onclick="addCalc('5')">5</button>
-                    <button onclick="addCalc('6')">6</button>
-                    <button onclick="addCalc('+')">+</button>
+                    <button type="button" onclick="addCalc('4')">4</button>
+                    <button type="button" onclick="addCalc('5')">5</button>
+                    <button type="button" onclick="addCalc('6')">6</button>
+                    <button type="button" onclick="addCalc('+')">+</button>
 
-                    <button onclick="addCalc('1')">1</button>
-                    <button onclick="addCalc('2')">2</button>
-                    <button onclick="addCalc('3')">3</button>
-                    <button onclick="calculateCalc()">=</button>
+                    <button type="button" onclick="addCalc('1')">1</button>
+                    <button type="button" onclick="addCalc('2')">2</button>
+                    <button type="button" onclick="addCalc('3')">3</button>
+                    <button type="button" onclick="calculateCalc()">=</button>
 
-                    <button onclick="addCalc('0')" class="zero">
+                    <button type="button" onclick="addCalc('0')" class="zero">
                         0
                     </button>
 
-                    <button onclick="addCalc('.')">.</button>
+                    <button type="button" onclick="addCalc('.')">.</button>
 
                 </div>
             </div>
@@ -100,7 +96,6 @@
 
             <!-- Percentage Calculator -->
             <div class="tool-card">
-
                 <h3>📊 Percentage Calculator</h3>
 
                 <input
@@ -115,19 +110,56 @@
                     placeholder="Number"
                 >
 
-                <button onclick="calculatePercentage()">
+                <button type="button" onclick="calculatePercentage()">
                     Calculate
                 </button>
 
                 <div id="percentageResult" class="result"></div>
-
             </div>
 
 
             <!-- Unit Converter -->
             <div class="tool-card">
-
                 <h3>📏 Unit Converter</h3>
 
                 <input
                     type="number"
+                    id="unitValue"
+                    placeholder="Enter value"
+                >
+
+                <select id="unitFrom">
+                    <option value="meter">Meter</option>
+                    <option value="kilometer">Kilometer</option>
+                    <option value="feet">Feet</option>
+                    <option value="inch">Inch</option>
+                </select>
+
+                <select id="unitTo">
+                    <option value="meter">Meter</option>
+                    <option value="kilometer">Kilometer</option>
+                    <option value="feet">Feet</option>
+                    <option value="inch">Inch</option>
+                </select>
+
+                <button type="button" onclick="convertUnit()">
+                    Convert
+                </button>
+
+                <div id="unitResult" class="result"></div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+        <p>© 2026 ToolHub. All Rights Reserved.</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
