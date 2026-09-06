@@ -1,181 +1,305 @@
-// ===============================
-// DARK MODE
-// ===============================
+/* ========================================
+TOOLHUB JAVASCRIPT
+======================================== */
 
-function toggleDarkMode() {
+/* =========================
+DARK MODE
+========================= */
+
+const darkModeBtn = document.getElementById("darkModeBtn");
+
+if (darkModeBtn) {
+
+darkModeBtn.addEventListener("click", function () {
+
     document.body.classList.toggle("dark-mode");
 
     if (document.body.classList.contains("dark-mode")) {
-        localStorage.setItem("darkMode", "enabled");
+
+        localStorage.setItem("darkMode", "on");
+        darkModeBtn.innerHTML = "☀️";
+
     } else {
-        localStorage.setItem("darkMode", "disabled");
-    }
-}
 
+        localStorage.setItem("darkMode", "off");
+        darkModeBtn.innerHTML = "🌙";
 
-// ===============================
-// LOAD DARK MODE
-// ===============================
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    if (localStorage.getItem("darkMode") === "enabled") {
-        document.body.classList.add("dark-mode");
-    }
-
-
-    // CONTACT FORM
-    const contactForm = document.getElementById("contactForm");
-
-    if (contactForm) {
-
-        contactForm.addEventListener("submit", function (event) {
-
-            event.preventDefault();
-
-            alert("Thank you! Your message has been received.");
-
-            contactForm.reset();
-        });
     }
 
 });
 
+}
 
-// ===============================
-// AGE CALCULATOR
-// ===============================
+/* Load saved dark mode */
 
-function calculateAge() {
+if (localStorage.getItem("darkMode") === "on") {
 
-    const birthDate = document.getElementById("birthDate").value;
-    const result = document.getElementById("ageResult");
+document.body.classList.add("dark-mode");
+
+if (darkModeBtn) {
+    darkModeBtn.innerHTML = "☀️";
+}
+
+}
+
+/* =========================
+AGE CALCULATOR
+========================= */
+
+const ageBtn = document.getElementById("ageBtn");
+
+if (ageBtn) {
+
+ageBtn.addEventListener("click", function () {
+
+    const birthDate =
+        document.getElementById("birthDate").value;
+
+    const result =
+        document.getElementById("ageResult");
 
     if (!birthDate) {
-        result.innerText = "Please select your birth date.";
+
+        result.innerText =
+            "Please select your birth date.";
+
         return;
     }
 
     const birth = new Date(birthDate);
     const today = new Date();
 
-    let years = today.getFullYear() - birth.getFullYear();
-    let months = today.getMonth() - birth.getMonth();
-    let days = today.getDate() - birth.getDate();
+    if (birth > today) {
+
+        result.innerText =
+            "Please enter a valid birth date.";
+
+        return;
+    }
+
+    let years =
+        today.getFullYear() -
+        birth.getFullYear();
+
+    let months =
+        today.getMonth() -
+        birth.getMonth();
+
+    let days =
+        today.getDate() -
+        birth.getDate();
+
 
     if (days < 0) {
+
         months--;
 
-        const previousMonth = new Date(
-            today.getFullYear(),
-            today.getMonth(),
-            0
-        );
+        const previousMonth =
+            new Date(
+                today.getFullYear(),
+                today.getMonth(),
+                0
+            );
 
         days += previousMonth.getDate();
     }
 
+
     if (months < 0) {
+
         years--;
         months += 12;
+
     }
 
-    if (birth > today) {
-        result.innerText = "Please enter a valid birth date.";
-        return;
-    }
 
     result.innerText =
         years + " Years, " +
         months + " Months, " +
         days + " Days";
+
+});
+
 }
 
+/* =========================
+CALCULATOR
+========================= */
 
-// ===============================
-// CALCULATOR
-// ===============================
+const calcDisplay =
+document.getElementById("calcDisplay");
 
-function addCalc(value) {
+const calculator =
+document.querySelector(".calculator");
 
-    const display = document.getElementById("calcDisplay");
+if (calculator && calcDisplay) {
 
-    display.value += value;
-}
+calculator.addEventListener("click", function (event) {
 
+    const button =
+        event.target.closest("button");
 
-function clearCalc() {
+    if (!button) return;
 
-    document.getElementById("calcDisplay").value = "";
-}
-
-
-function deleteCalc() {
-
-    const display = document.getElementById("calcDisplay");
-
-    display.value = display.value.slice(0, -1);
-}
+    const value =
+        button.getAttribute("data-value");
 
 
-function calculateCalc() {
+    /* Clear */
 
-    const display = document.getElementById("calcDisplay");
+    if (value === "clear") {
+
+        calcDisplay.value = "";
+        return;
+
+    }
+
+
+    /* Delete */
+
+    if (value === "delete") {
+
+        calcDisplay.value =
+            calcDisplay.value.slice(0, -1);
+
+        return;
+
+    }
+
+
+    /* Calculate */
+
+    if (value === "=") {
+
+        calculateExpression();
+        return;
+
+    }
+
+
+    /* Add number/operator */
+
+    calcDisplay.value += value;
+
+});
+
+
+function calculateExpression() {
+
+    const expression =
+        calcDisplay.value;
+
+    if (!expression) return;
+
+
+    /* Only allow calculator characters */
+
+    if (!/^[0-9+\-*/.() ]+$/.test(expression)) {
+
+        calcDisplay.value = "Error";
+        return;
+
+    }
+
 
     try {
 
-        if (!/^[0-9+\-*/.() ]+$/.test(display.value)) {
-            display.value = "Error";
+        const answer =
+            Function(
+                '"use strict"; return (' +
+                expression +
+                ')'
+            )();
+
+
+        if (
+            typeof answer !== "number" ||
+            !isFinite(answer)
+        ) {
+
+            calcDisplay.value = "Error";
             return;
+
         }
 
-        display.value = Function(
-            '"use strict"; return (' + display.value + ')'
-        )();
+
+        calcDisplay.value = answer;
 
     } catch (error) {
 
-        display.value = "Error";
+        calcDisplay.value = "Error";
+
     }
+
 }
 
+}
 
-// ===============================
-// PERCENTAGE CALCULATOR
-// ===============================
+/* =========================
+PERCENTAGE CALCULATOR
+========================= */
 
-function calculatePercentage() {
+const percentageBtn =
+document.getElementById("percentageBtn");
+
+if (percentageBtn) {
+
+percentageBtn.addEventListener("click", function () {
 
     const percent =
-        parseFloat(document.getElementById("percent").value);
+        parseFloat(
+            document.getElementById("percent").value
+        );
 
     const number =
-        parseFloat(document.getElementById("percentNumber").value);
+        parseFloat(
+            document.getElementById("percentNumber").value
+        );
 
     const result =
         document.getElementById("percentageResult");
 
+
     if (isNaN(percent) || isNaN(number)) {
 
-        result.innerText = "Please enter both values.";
+        result.innerText =
+            "Please enter both values.";
+
         return;
+
     }
 
-    const answer = (percent / 100) * number;
+
+    const answer =
+        (percent / 100) * number;
+
 
     result.innerText =
-        percent + "% of " + number + " = " + answer;
+        percent +
+        "% of " +
+        number +
+        " = " +
+        answer;
+
+});
+
 }
 
+/* =========================
+UNIT CONVERTER
+========================= */
 
-// ===============================
-// UNIT CONVERTER
-// ===============================
+const convertBtn =
+document.getElementById("convertBtn");
 
-function convertUnit() {
+if (convertBtn) {
+
+convertBtn.addEventListener("click", function () {
 
     const value =
-        parseFloat(document.getElementById("unitValue").value);
+        parseFloat(
+            document.getElementById("unitValue").value
+        );
 
     const from =
         document.getElementById("unitFrom").value;
@@ -186,56 +310,74 @@ function convertUnit() {
     const result =
         document.getElementById("unitResult");
 
+
     if (isNaN(value)) {
 
-        result.innerText = "Please enter a value.";
+        result.innerText =
+            "Please enter a value.";
+
         return;
+
     }
 
-
-    // Convert everything to meters first
 
     let meters;
 
+
+    /* Convert FROM to meters */
+
     if (from === "meter") {
+
         meters = value;
-    }
 
-    else if (from === "kilometer") {
+    } else if (from === "kilometer") {
+
         meters = value * 1000;
-    }
 
-    else if (from === "feet") {
+    } else if (from === "feet") {
+
         meters = value * 0.3048;
-    }
 
-    else if (from === "inch") {
+    } else if (from === "inch") {
+
         meters = value * 0.0254;
+
     }
 
-
-    // Convert meters to target unit
 
     let answer;
 
+
+    /* Convert meters TO target */
+
     if (to === "meter") {
+
         answer = meters;
-    }
 
-    else if (to === "kilometer") {
+    } else if (to === "kilometer") {
+
         answer = meters / 1000;
-    }
 
-    else if (to === "feet") {
+    } else if (to === "feet") {
+
         answer = meters / 0.3048;
-    }
 
-    else if (to === "inch") {
+    } else if (to === "inch") {
+
         answer = meters / 0.0254;
+
     }
 
 
     result.innerText =
-        value + " " + from + " = " +
-        answer + " " + to;
+        value +
+        " " +
+        from +
+        " = " +
+        answer +
+        " " +
+        to;
+
+});
+
 }
