@@ -1,2 +1,133 @@
-<html> <head> <title> My First Page <title/> </title> </title></head> </html> <head/></head>
-<body> <p>Hello, this is my first page.</p> </p> <body/></body> <html/></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToolHub - Free Online Tools</title>
+    <link rel="stylesheet" href="Style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="container nav-container">
+        <h2>ToolHub</h2>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="About.html">About</a>
+            <a href="Contact.html">Contact</a>
+            <button onclick="toggleDarkMode()">🌙</button>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="container">
+        <span class="badge">FREE ONLINE TOOLS</span>
+
+        <h1>Useful Tools in One Place</h1>
+
+        <p>
+            Free and simple online tools for everyday calculations.
+        </p>
+    </div>
+</section>
+
+<section class="tools">
+    <div class="container">
+
+        <h2>Our Tools</h2>
+
+        <div class="tool-grid">
+
+            <!-- Age Calculator -->
+            <div class="tool-card">
+                <h3>🎂 Age Calculator</h3>
+
+                <input type="date" id="birthDate">
+
+                <button onclick="calculateAge()">
+                    Calculate Age
+                </button>
+
+                <div id="ageResult" class="result"></div>
+            </div>
+
+
+            <!-- Calculator -->
+            <div class="tool-card">
+                <h3>🧮 Calculator</h3>
+
+                <input
+                    type="text"
+                    id="calcDisplay"
+                    placeholder="0"
+                    readonly
+                >
+
+                <div class="calculator">
+
+                    <button onclick="clearCalc()">C</button>
+                    <button onclick="deleteCalc()">⌫</button>
+                    <button onclick="addCalc('/')">÷</button>
+                    <button onclick="addCalc('*')">×</button>
+
+                    <button onclick="addCalc('7')">7</button>
+                    <button onclick="addCalc('8')">8</button>
+                    <button onclick="addCalc('9')">9</button>
+                    <button onclick="addCalc('-')">−</button>
+
+                    <button onclick="addCalc('4')">4</button>
+                    <button onclick="addCalc('5')">5</button>
+                    <button onclick="addCalc('6')">6</button>
+                    <button onclick="addCalc('+')">+</button>
+
+                    <button onclick="addCalc('1')">1</button>
+                    <button onclick="addCalc('2')">2</button>
+                    <button onclick="addCalc('3')">3</button>
+                    <button onclick="calculateCalc()">=</button>
+
+                    <button onclick="addCalc('0')" class="zero">
+                        0
+                    </button>
+
+                    <button onclick="addCalc('.')">.</button>
+
+                </div>
+            </div>
+
+
+            <!-- Percentage Calculator -->
+            <div class="tool-card">
+
+                <h3>📊 Percentage Calculator</h3>
+
+                <input
+                    type="number"
+                    id="percent"
+                    placeholder="Percentage"
+                >
+
+                <input
+                    type="number"
+                    id="percentNumber"
+                    placeholder="Number"
+                >
+
+                <button onclick="calculatePercentage()">
+                    Calculate
+                </button>
+
+                <div id="percentageResult" class="result"></div>
+
+            </div>
+
+
+            <!-- Unit Converter -->
+            <div class="tool-card">
+
+                <h3>📏 Unit Converter</h3>
+
+                <input
+                    type="number"
